@@ -1,10 +1,13 @@
-logLevel = "DEBUG"
-
-[web]
-address = ":8080"
-readOnly = true
+[api]
+    debug = true
 
 [entryPoints]
+    [entryPoints.traefik]
+    address = ":8080"
+
+    [entryPoints.traefik.auth.basic]
+    users = ["admin:$apr1$hD9OJEta$TT7mPGXzdnkKXY/zfmFLm0"]
+
     [entryPoints.http]
     address = ":80"
 
