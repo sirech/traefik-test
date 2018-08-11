@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  echo:
+    image: hashicorp/http-echo
+    command: "--text hello"
+    networks:
+      - traefik-test_traefik
+    labels:
+      - "traefik.backend=echo"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=PathPrefix:/echo"
+
+networks:
+  traefik-test_traefik:
+    external: true

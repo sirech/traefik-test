@@ -9,10 +9,11 @@ services:
       - "8080:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-
-  whoami:
-    image: emilevauge/whoami # A container that exposes an API to show its IP address
+    networks:
+      - traefik
     labels:
-      - "traefik.backend=whoami"
-      - "traefik.frontend.entryPoints=http"
-      - "traefik.frontend.rule=PathPrefix:/findme"
+      - "traefik.backend=traefik"
+
+
+networks:
+  traefik:
