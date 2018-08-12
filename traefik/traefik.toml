@@ -21,6 +21,16 @@ defaultEntryPoints = ["http", "https"]
             certFile = "/certs/cert.crt"
             keyFile = "/certs/cert.key"
 
+    [entryPoints.withTLS]
+    address = ":4443"
+        [entryPoints.withTLS.tls.ClientCA]
+        files = ["/certs/client.crt"]
+        optional = false
+        [entryPoints.withTLS.tls]
+            [[entryPoints.withTLS.tls.certificates]]
+            certFile = "/certs/cert.crt"
+            keyFile = "/certs/cert.key"
+
 [docker]
 endpoint = "unix:///var/run/docker.sock"
 domain = "docker.localhost"

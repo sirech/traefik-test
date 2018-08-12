@@ -23,21 +23,29 @@ Generate a self signed certificate for the url with:
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout traefik/certs/cert.key -out traefik/certs/cert.crt
 ```
 
+Generate a self signed client certificate for mTLS with:
+
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout traefik/certs/client.key -out traefik/certs/client.crt
+```
+
 ### Running the code
 
-_Traefik_ and the two example apps are run in different compose files:
+_Traefik_ and the three example apps are run in different compose files:
 
 ```
 docker-compose -f docker-compose.base.yml up --build
 docker-compose -f docker-compose.app1.yml up
 docker-compose -f docker-compose.app2.yml up
+docker-compose -f docker-compose.app3.yml up
 ```
 
 ## Access
 
 - The ui is available under `localhost:8080`
 - The first app is reached through `localhost/findme`
-- The second app is reached through `https://echo.testing.com`
+- The second app is reached through `https://echo.testing.com/standard`
+- The third app is reached through `https://echo.testing.com:4443/tls` and requires a client certificate. The certificate can be installed in `Postman` following [this guide](https://www.getpostman.com/docs/v6/postman/sending_api_requests/certificates)
 
 ## What is being tested
 
@@ -46,6 +54,7 @@ docker-compose -f docker-compose.app2.yml up
 - *Password Access for the admin interface*: It is generated through `htpasswd`
 - *Load Balancing*: Two instances of the same app receive traffic using `wrr`
 - *SSL Termination*: Using a self signed certificate, the requests to the echo app are sent through http
+- *Mutual TLS*: Using a self signed client certificate, the client is checked as well
 
 ## Open Questions
 

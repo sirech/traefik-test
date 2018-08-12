@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  tls:
+    image: hashicorp/http-echo
+    command: "--text withTLS"
+    networks:
+      - traefik-test_traefik
+    labels:
+      - "traefik.backend=tls"
+      - "traefik.frontend.entryPoints=withTLS"
+      - "traefik.frontend.rule=Host:echo.testing.com;Path:/tls"
+
+networks:
+  traefik-test_traefik:
+    external: true
