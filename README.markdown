@@ -28,6 +28,7 @@ docker-compose -f docker-compose.app2.yml up
 - *Discovery*: Traefik picks new applications automatically: When you start one of the example apps it appears in the ui automatically
 - *Routing*: Traefik sends requests based on the configuration, which is passed through labels. No restart in `traefik` itself is needed for this
 - *Password Access for the admin interface*: It is generated through `htpasswd`
+- *Load Balancing*: Two instances of the same app receive traffic using `wrr`
 
 ## Open Questions
 
