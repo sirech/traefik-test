@@ -17,11 +17,17 @@ docker-compose -f docker-compose.app1.yml up
 docker-compose -f docker-compose.app2.yml up
 ```
 
+In order to test the echo app, you need to add this line in your `/etc/hosts` file:
+
+```
+127.0.0.1 echo.testing.com
+```
+
 ## Access
 
 - The ui is available under `localhost:8080`
 - The first app is reached through `localhost/findme`
-- The second app is reached through `localhost/echo`
+- The second app is reached through `echo.testing.com`
 
 ## What is being tested
 

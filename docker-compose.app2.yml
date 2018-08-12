@@ -9,7 +9,7 @@ services:
     labels:
       - "traefik.backend=echo"
       - "traefik.frontend.entryPoints=http"
-      - "traefik.frontend.rule=PathPrefix:/echo"
+      - "traefik.frontend.rule=Host:echo.testing.com"
 
 networks:
   traefik-test_traefik:

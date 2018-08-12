@@ -12,6 +12,7 @@ services:
     networks:
       - traefik
     labels:
+      - "traefik.enable=false"
       - "traefik.backend=traefik"
 
 
