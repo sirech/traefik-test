@@ -55,6 +55,7 @@ docker-compose -f docker-compose.app3.yml up
 - *Load Balancing*: Two instances of the same app receive traffic using `wrr`
 - *SSL Termination*: Using a self signed certificate, the requests to the echo app are sent through http
 - *Mutual TLS*: Using a self signed client certificate, the client is checked as well
+- *Access*: There are different `entryPoints` defined, and not all of them should be available for each app. This can be defined in the config for each service, or by modifying the `defaultEntryPoints` in the TOML file
 
 ## Open Questions
 
